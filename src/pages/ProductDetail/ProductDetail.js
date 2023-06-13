@@ -123,7 +123,7 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {imageData.detailImg.map((img, index) => {
+        {productData.mainThumbnailImage.map((img, index) => {
           return <img key={index} src={img} alt="productImages" />
         })}
       </div>
