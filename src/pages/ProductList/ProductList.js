@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link, useSearchParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { APIS } from '../../config'
+import ProductCard from './ProductCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import './ProductList.scss'
@@ -80,27 +81,9 @@ const ProductList = () => {
       </div>
 
       <div className="productListMain">
-        {products.map(
-          ({ productId, productImage, productName, productPrice, index }) => {
-            return (
-              <Link to={`/products/details/${productId}`} key={productId}>
-                <div className="productItem" key={index}>
-                  <img
-                    className="productImg"
-                    src={productImage}
-                    alt="productDetailImg"
-                  />
-                  <div className="productText">
-                    <p className="itemName">{productName}</p>
-                    <p className="itemPrice">{`${parseFloat(
-                      productPrice
-                    ).toLocaleString()}원`}</p>
-                  </div>
-                </div>
-              </Link>
-            )
-          }
-        )}
+        {products.map((product, i) => {
+          return <ProductCard product={product} key={i} />
+        })}
       </div>
     </div>
   )
