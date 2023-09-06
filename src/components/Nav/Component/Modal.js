@@ -8,7 +8,7 @@ import './Modal.scss'
 import './modalAnimation.scss'
 
 const Modal = () => {
-  let token = localStorage.getItem('TOKEN')
+  const token = localStorage.getItem('TOKEN')
 
   return (
     <div className="modal">

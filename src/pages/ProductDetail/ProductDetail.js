@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { APIS } from '../../config'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +12,6 @@ import ImgCarousel from './Component/ImgCarousel'
 import Review from './Component/Review'
 import GoToTop from './Component/GoToTop'
 import CartButton from './Component/CartButton'
-import { APIS } from '../../config'
 
 import './ProductDetail.scss'
 
@@ -19,19 +19,15 @@ const ProductDetail = () => {
   const params = useParams()
   const productId = params.id
 
-  const [products, setProducts] = useState()
   const [quantity, setQuantity] = useState(0)
   const [productData, setProductData] = useState({})
   const [isCartBtn, setIsCartBtn] = useState(false)
-  const [orderList, setOrderList] = useState({})
-  const [imageData, setImageData] = useState()
 
   useEffect(() => {
-    let url = `${APIS.product}/details/${productId}`
-
-    fetch(url)
+    fetch(`${APIS.product}/details/${productId}`)
       .then(response => response.json())
       .then(result => {
+        console.log(result)
         setProductData(result.data)
       })
   }, [])
@@ -50,8 +46,8 @@ const ProductDetail = () => {
         </div>
 
         <ImgCarousel
-          imageData={imageData}
-          setImageData={setImageData}
+          productData={productData}
+          setProductData={setProductData}
           productId={productId}
         />
 
@@ -123,9 +119,7 @@ const ProductDetail = () => {
       </div>
       <div className="rowLine" />
       <div className="productImgs">
-        {productData.mainThumbnailImage.map((img, index) => {
-          return <img key={index} src={img} alt="productImages" />
-        })}
+        <img src={productData.mainThumbnailImage} alt="productImages" />
       </div>
       <div className="detailInformationBox">
         <DetailInformation />

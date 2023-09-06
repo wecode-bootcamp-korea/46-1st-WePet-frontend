@@ -17,7 +17,7 @@ import './Nav.scss'
 const Nav = () => {
   const navigate = useNavigate()
 
-  let token = localStorage.getItem('TOKEN')
+  const token = localStorage.getItem('TOKEN')
   const [isLogoHover, setIsLogoHover] = useState(false)
   const [isModal, setIsModal] = useState(false)
   const [isSearchModal, setIsSearchModal] = useState(false)
